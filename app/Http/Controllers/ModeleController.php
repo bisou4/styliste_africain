@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Client;
+use App\Models\Modele;
 use Illuminate\Http\Request;
 
-class ClientController extends Controller
+class ModeleController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +15,8 @@ class ClientController extends Controller
      */
     public function index()
     {
-        return view('client.liste_client', [
-            'clients' => Client::all()
+        return view('modele.liste_modele', [
+            'modeles' => Modele::all()
         ]);
     }
 
@@ -26,7 +27,10 @@ class ClientController extends Controller
      */
     public function create()
     {
-        return view('client.formulaire');
+        return view('modele.formulaire', [
+            'clients' => Client::all(),
+        ]);
+
     }
 
     /**
@@ -37,14 +41,12 @@ class ClientController extends Controller
      */
     public function store(Request $request)
     {
-        Client::create([
+        Modele::create([
+            'id' => $request->id,
             'nom' => $request->nom,
-            'prenom' => $request->prenom,
-            'telephone' => $request->telephone,
-            'adresse' => $request->adresse,
-            'email' => $request->email,
+            'photo' => $request->photo,
         ]);
-        return redirect()->route('gestion_client.index');
+        return redirect()->route('gestion_modele.index');
     }
 
     /**
@@ -55,8 +57,8 @@ class ClientController extends Controller
      */
     public function show($id)
     {
-        return view('client.show', [
-            'finds' => Client::find($id),
+        return view('modele.show', [
+            'finds' => Modele::find($id),
         ]);
     }
 
@@ -68,8 +70,8 @@ class ClientController extends Controller
      */
     public function edit($id)
     {
-        return view('client.edit', [
-            'finds' => Client::find($id),
+        return view('modele.edit', [
+            'finds' => Modele::find($id),
         ]);
     }
 
@@ -82,10 +84,10 @@ class ClientController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $client = Client::find($id);
-        $client->update($request->all());
+        $mod = Modele::find($id);
+        $mod->update($request->all());
 
-        return redirect()->route('gestion_client.index');
+        return redirect()->route('gestion_modele.index');
     }
 
     /**
@@ -96,9 +98,9 @@ class ClientController extends Controller
      */
     public function destroy($id)
     {
-        $client = Client::find($id);
-        $client->delete();
+        $mod = Modele::find($id);
+        $mod ->delete();
 
-        return redirect()->route('gestion_client.index');
+        return redirect()->route('gestion_modele.index');
     }
 }

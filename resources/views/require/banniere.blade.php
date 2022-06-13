@@ -2,7 +2,7 @@
 <section id="hero" class="d-flex flex-column justify-content-center">
   <div class="container" data-aos="zoom-in" data-aos-delay="100">
     <h1>Bienvenu chez le styliste africain du Faso</h1>
-    <p>Nos Specialistes en Styliste Modeliste Africain  <span class="typed" data-typed-items="Couture homme, couture femme, enfant, mariage"></span></p>
+    <p>Nous sommes les meilleurs dans  <span class="typed" data-typed-items="Couture homme, couture femme, enfant, mariage"></span></p>
     <div class="social-links">
       <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
       <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>

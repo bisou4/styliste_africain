@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Client;
+use App\Models\Paiement;
 use Illuminate\Http\Request;
 
-class ClientController extends Controller
+class PaiementController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +15,8 @@ class ClientController extends Controller
      */
     public function index()
     {
-        return view('client.liste_client', [
-            'clients' => Client::all()
+        return view('paiement.liste_paiement', [
+            'paiements' => Paiement::all()
         ]);
     }
 
@@ -26,7 +27,9 @@ class ClientController extends Controller
      */
     public function create()
     {
-        return view('client.formulaire');
+        return view('paiement.formulaire', [
+            'clients' => Client::all(),
+        ]);
     }
 
     /**
@@ -37,14 +40,13 @@ class ClientController extends Controller
      */
     public function store(Request $request)
     {
-        Client::create([
-            'nom' => $request->nom,
-            'prenom' => $request->prenom,
-            'telephone' => $request->telephone,
-            'adresse' => $request->adresse,
-            'email' => $request->email,
+        Paiement::create([
+            'id' => $request->id,
+            'total' => $request->total,
+            'avance' => $request->avance,
+            'reste' => $request->reste,
         ]);
-        return redirect()->route('gestion_client.index');
+        return redirect()->route('gestion_paiement.index');
     }
 
     /**
@@ -55,8 +57,8 @@ class ClientController extends Controller
      */
     public function show($id)
     {
-        return view('client.show', [
-            'finds' => Client::find($id),
+        return view('paiement.show', [
+            'finds' => Paiement::find($id),
         ]);
     }
 
@@ -68,8 +70,8 @@ class ClientController extends Controller
      */
     public function edit($id)
     {
-        return view('client.edit', [
-            'finds' => Client::find($id),
+        return view('paiement.edit', [
+            'finds' => Paiement::find($id),
         ]);
     }
 
@@ -82,10 +84,10 @@ class ClientController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $client = Client::find($id);
-        $client->update($request->all());
+        $paie = Paiement::find($id);
+        $paie->update($request->all());
 
-        return redirect()->route('gestion_client.index');
+        return redirect()->route('gestion_paiement.index');
     }
 
     /**
@@ -96,9 +98,9 @@ class ClientController extends Controller
      */
     public function destroy($id)
     {
-        $client = Client::find($id);
-        $client->delete();
+        $paie = Paiement::find($id);
+        $paie->delete();
 
-        return redirect()->route('gestion_client.index');
+        return redirect()->route('gestion_paiement.index');
     }
 }

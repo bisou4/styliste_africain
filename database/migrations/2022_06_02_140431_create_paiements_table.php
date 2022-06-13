@@ -18,9 +18,13 @@ class CreatePaiementsTable extends Migration
             $table->integer('total');
             $table->integer('avance');
             $table->integer('reste');
-            $table->foreign('clients_id')->unsigned();
+
+            $table->unsignedBigInteger('clients_id')->unsigned();
             $table->foreign('clients_id')->references('id')->on('clients')->delete('update');
+
+            $table->unsignedBigInteger('modeles_id')->unsigned();
             $table->foreign('modeles_id')->references('id')->on('modeles')->delete('update');
+
             $table->timestamps();
         });
     }

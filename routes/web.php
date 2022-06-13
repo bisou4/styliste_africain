@@ -1,6 +1,9 @@
 <?php
 
 use App\Http\Controllers\ClientController;
+use App\Http\Controllers\MesureController;
+use App\Http\Controllers\ModeleController;
+use App\Http\Controllers\PaiementController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,3 +28,20 @@ Route::get('/dashboard', function () {
 require __DIR__.'/auth.php';
 
 Route::resource('gestion_client', ClientController::class);
+Route::get('supprimer_client/{id}', [ClientController::class, 'destroy']);
+Route::get('gestion_client.show', [ClientController::class, 'show']);
+
+
+Route::resource('gestion_mesure', MesureController::class);
+Route::get('supprimer_mesure/{id}', [MesureController::class, 'destroy']);
+
+
+Route::resource('gestion_modele', ModeleController::class);
+Route::get('supprimer_modele/{id}', [MesureController::class, 'destroy']);
+
+
+Route::resource('gestion_paiement', PaiementController::class);
+Route::get('supprimer_paiement/{id}', [PaiementController::class, 'destroy']);
+
+
+
